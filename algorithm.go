@@ -1,5 +1,9 @@
 package parentheses
 
+import "errors"
+
+var ErrEmptySlice = errors.New("length of slice is 0")
+
 func BalancedString(s string) bool {
 	list := []string{}
 	flag := true
@@ -16,7 +20,7 @@ func BalancedString(s string) bool {
 				break
 			}
 
-			head := pop(&list)
+			head, _ := pop(&list)
 
 			if isEqual(v, head) {
 				continue
@@ -83,10 +87,14 @@ func isEqual(x1, x2 string) bool {
 	return false
 }
 
-func pop(r *[]string) string {
+func pop(r *[]string) (string, error) {
+	if len(*r) == 0 {
+		return "the slice is empty", ErrEmptySlice
+	}
+
 	list := *r
 	head := list[len(list)-1]
 	*r = list[:len(list)-1]
 
-	return head
+	return head, nil
 }
