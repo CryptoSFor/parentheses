@@ -22,7 +22,7 @@ func BalancedString(s string) bool {
 
 			head, _ := pop(&list)
 
-			if isEqual(v, head) {
+			if pairOfParentheses(v, head) {
 				continue
 			}
 
@@ -71,7 +71,7 @@ func isClose(v string) string {
 	return ""
 }
 
-func isEqual(x1, x2 string) bool {
+func pairOfParentheses(x1, x2 string) bool {
 	if x1 == "}" && x2 == "{" {
 		return true
 	}
