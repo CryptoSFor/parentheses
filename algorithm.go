@@ -1,10 +1,11 @@
 package parentheses
 
 func BalancedString(s string) bool {
-	list := []rune{}
+	list := []string{}
 	flag := true
 
-	for _, v := range s {
+	for i := 0; i < len(s); i++ {
+		v := string(s[i])
 		if v == isOpen(v) {
 			list = append(list, v)
 		}
@@ -34,55 +35,55 @@ func BalancedString(s string) bool {
 	return false
 }
 
-func isOpen(v rune) rune {
-	if string(v) == "{" {
+func isOpen(v string) string {
+	if v == "{" {
 		return v
 	}
 
-	if string(v) == "[" {
+	if v == "[" {
 		return v
 	}
 
-	if string(v) == "(" {
+	if v == "(" {
 		return v
 	}
 
-	return 0
+	return ""
 }
 
-func isClose(v rune) rune {
-	if string(v) == "}" {
+func isClose(v string) string {
+	if v == "}" {
 		return v
 	}
 
-	if string(v) == "]" {
+	if v == "]" {
 		return v
 	}
 
-	if string(v) == ")" {
+	if v == ")" {
 		return v
 	}
 
-	return 0
+	return ""
 }
 
-func isEqual(x1, x2 rune) bool {
-	if string(x1) == "}" && string(x2) == "{" {
+func isEqual(x1, x2 string) bool {
+	if x1 == "}" && x2 == "{" {
 		return true
 	}
 
-	if string(x1) == "]" && string(x2) == "[" {
+	if x1 == "]" && x2 == "[" {
 		return true
 	}
 
-	if string(x1) == ")" && string(x2) == "(" {
+	if x1 == ")" && x2 == "(" {
 		return true
 	}
 
 	return false
 }
 
-func pop(r *[]rune) rune {
+func pop(r *[]string) string {
 	list := *r
 	head := list[len(list)-1]
 	*r = list[:len(list)-1]
