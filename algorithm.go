@@ -17,7 +17,7 @@ func BalancedString(s string) bool {
 
 			head := list[listLength-1]
 
-			if !pairOfParentheses(v, head) {
+			if !pairOfParentheses(head, v) {
 				return false
 			}
 
@@ -29,15 +29,15 @@ func BalancedString(s string) bool {
 }
 
 func pairOfParentheses(x1, x2 string) bool {
-	if x1 == "}" && x2 == "{" {
+	if x1 == "{" && x2 == "}" {
 		return true
 	}
 
-	if x1 == "]" && x2 == "[" {
+	if x1 == "[" && x2 == "]" {
 		return true
 	}
 
-	if x1 == ")" && x2 == "(" {
+	if x1 == "(" && x2 == ")" {
 		return true
 	}
 
