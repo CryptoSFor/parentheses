@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/CryptoSFor/Parentheses/parentheses"
+	"github.com/CryptoSFor/Parentheses/service"
 )
 
 func main() {
-	parentheses.HandleRequests()
+	service.HandleRequests()
 	log.Fatal(http.ListenAndServe(":8181", nil))
 }
