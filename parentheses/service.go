@@ -1,9 +1,20 @@
 package parentheses
 
 import (
+	"fmt"
 	"math/rand"
+	"net/http"
 	"strconv"
 )
+
+func HandleRequests() {
+	http.HandleFunc("/generate", GenerateHandler)
+}
+
+func GenerateHandler(w http.ResponseWriter, r *http.Request) {
+	length := r.URL.Query().Get("length")
+	fmt.Fprintln(w, parenthesesGeneration(length))
+}
 
 func parenthesesGeneration(length string) string {
 	p := "[]{}()"
