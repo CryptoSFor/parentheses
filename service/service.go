@@ -9,6 +9,7 @@ import (
 	"strconv"
 )
 
+// HandleRequests implements all handlers
 func HandleRequests() {
 	http.HandleFunc("/generate", GenerateHandler)
 }
