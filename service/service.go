@@ -1,3 +1,5 @@
+// Package implements a function, that generates a random sequence of parentheses with length = n, and handler,
+// that handle request to /generate?n={length}
 package service
 
 import (
@@ -11,12 +13,14 @@ func HandleRequests() {
 	http.HandleFunc("/generate", GenerateHandler)
 }
 
+// GenerateHandler handles request to /generate?n={length}
 func GenerateHandler(w http.ResponseWriter, r *http.Request) {
-	length := r.URL.Query().Get("length")
-	fmt.Fprintln(w, parenthesesGeneration(length))
+	length := r.URL.Query().Get("n")
+	fmt.Fprintln(w, ParenthesesGeneration(length))
 }
 
-func parenthesesGeneration(length string) string {
+// ParenthesesGeneration generates a random sequence of parentheses of n = length
+func ParenthesesGeneration(length string) string {
 	p := "[]{}()"
 	g := ""
 	n, _ := strconv.Atoi(length)
