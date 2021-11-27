@@ -1,74 +1,31 @@
 package parentheses
 
-import "errors"
-
-var ErrEmptySlice = errors.New("length of slice is 0")
-
 func BalancedString(s string) bool {
 	list := []string{}
-	flag := true
 
 	for i := 0; i < len(s); i++ {
 		v := string(s[i])
-		if v == isOpen(v) {
+		switch v {
+		case "{", "(", "[":
 			list = append(list, v)
-		}
 
-		if v == isClose(v) {
-			if len(list) == 0 {
-				flag = false
-				break
+		case "}", ")", "]":
+			listLength := len(list)
+			if listLength == 0 {
+				return false
 			}
 
-			head, _ := pop(&list)
+			head := list[listLength-1]
 
-			if pairOfParentheses(v, head) {
-				continue
+			if !pairOfParentheses(v, head) {
+				return false
 			}
 
-			flag = false
-
-			break
+			list = list[:listLength-1]
 		}
 	}
 
-	if flag && len(list) == 0 {
-		return true
-	}
-
-	return false
-}
-
-func isOpen(v string) string {
-	if v == "{" {
-		return v
-	}
-
-	if v == "[" {
-		return v
-	}
-
-	if v == "(" {
-		return v
-	}
-
-	return ""
-}
-
-func isClose(v string) string {
-	if v == "}" {
-		return v
-	}
-
-	if v == "]" {
-		return v
-	}
-
-	if v == ")" {
-		return v
-	}
-
-	return ""
+	return len(list) == 0
 }
 
 func pairOfParentheses(x1, x2 string) bool {
@@ -85,16 +42,4 @@ func pairOfParentheses(x1, x2 string) bool {
 	}
 
 	return false
-}
-
-func pop(r *[]string) (string, error) {
-	if len(*r) == 0 {
-		return "the slice is empty", ErrEmptySlice
-	}
-
-	list := *r
-	head := list[len(list)-1]
-	*r = list[:len(list)-1]
-
-	return head, nil
 }
