@@ -15,17 +15,17 @@ func HandleRequests() {
 
 // GenerateHandler handles request to /generate?n={length}
 func GenerateHandler(w http.ResponseWriter, r *http.Request) {
-	length := r.URL.Query().Get("n")
-	fmt.Fprintln(w, ParenthesesGeneration(length))
+	n := r.URL.Query().Get("n")
+	fmt.Fprintln(w, ParenthesesGeneration(n))
 }
 
 // ParenthesesGeneration generates a random sequence of parentheses of n = length
-func ParenthesesGeneration(length string) string {
+func ParenthesesGeneration(n string) string {
 	p := "[]{}()"
 	g := ""
-	n, _ := strconv.Atoi(length)
+	length, _ := strconv.Atoi(n)
 
-	for i := 0; i < n; i++ {
+	for i := 0; i < length; i++ {
 		g += string(p[rand.Intn(len(p))])
 	}
 
