@@ -5,23 +5,23 @@ package parentheses
 var brackets = map[string]string{"{": "}", "(": ")", "[": "]"}
 
 func BalancedString(s string) bool {
-	list := []string{}
+	stack := make([]string, 0, 16)
 
 	for i := 0; i < len(s); i++ {
 		v := string(s[i])
 		switch v {
 		case "{", "(", "[":
-			list = append(list, v)
+			stack = append(stack, v)
 
 		case "}", ")", "]":
-			listLength := len(list)
-			if listLength == 0 || v != brackets[list[listLength-1]] {
+			stackLength := len(stack)
+			if stackLength == 0 || v != brackets[stack[stackLength-1]] {
 				return false
 			}
 
-			list = list[:listLength-1]
+			stack = stack[:stackLength-1]
 		}
 	}
 
-	return len(list) == 0
+	return len(stack) == 0
 }
