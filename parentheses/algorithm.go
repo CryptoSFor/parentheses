@@ -1,7 +1,7 @@
-// Package implements function BalancedString, that verifies if the given string is a balanceds sequence of brackets
+// Package implements function BalancedString, that verifies if the given string is a balanced sequence of brackets
 package parentheses
 
-// BalancedString verifies if the given string is a balanceds sequence of brackets
+// BalancedString verifies if the given string is a balanced sequence of brackets
 var brackets = map[string]string{"{": "}", "(": ")", "[": "]"}
 
 func BalancedString(s string) bool {
