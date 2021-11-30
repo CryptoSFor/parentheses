@@ -25,20 +25,3 @@ func BalancedString(s string) bool {
 
 	return len(list) == 0
 }
-
-// pairOfParentheses checks if param x1 is an open parenthesis and x2 is a close parenthesis of one type
-func pairOfParentheses(x1, x2 string) bool {
-	if x1 == "{" && x2 == "}" {
-		return true
-	}
-
-	if x1 == "[" && x2 == "]" {
-		return true
-	}
-
-	if x1 == "(" && x2 == ")" {
-		return true
-	}
-
-	return false
-}
