@@ -2,6 +2,8 @@
 package parentheses
 
 // BalancedString verifies if the given string is a balanceds sequence of brackets
+var brackets = map[string]string{"{": "}", "(": ")", "[": "]"}
+
 func BalancedString(s string) bool {
 	list := []string{}
 
@@ -13,13 +15,7 @@ func BalancedString(s string) bool {
 
 		case "}", ")", "]":
 			listLength := len(list)
-			if listLength == 0 {
-				return false
-			}
-
-			head := list[listLength-1]
-
-			if !pairOfParentheses(head, v) {
+			if listLength == 0 || v != brackets[list[listLength-1]] {
 				return false
 			}
 
