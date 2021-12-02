@@ -5,7 +5,7 @@ package parentheses
 var brackets = map[string]string{"{": "}", "(": ")", "[": "]"}
 
 func BalancedString(s string) bool {
-	stack := make([]string, 0, 16)
+	stack := make([]string, 0, len([]rune(s)))
 
 	for i := 0; i < len(s); i++ {
 		v := string(s[i])
