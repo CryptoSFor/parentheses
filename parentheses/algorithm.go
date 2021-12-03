@@ -2,18 +2,17 @@
 package parentheses
 
 // BalancedString verifies if the given string is a balanced sequence of brackets
-var brackets = map[string]string{"{": "}", "(": ")", "[": "]"}
+var brackets = map[rune]rune{'{': '}', '(': ')', '[': ']'}
 
 func BalancedString(s string) bool {
-	stack := make([]string, 0, len([]rune(s)))
+	stack := make([]rune, 0, len([]rune(s)))
 
-	for i := 0; i < len(s); i++ {
-		v := string(s[i])
+	for _, v := range s {
 		switch v {
-		case "{", "(", "[":
+		case '{', '(', '[':
 			stack = append(stack, v)
 
-		case "}", ")", "]":
+		case '}', ')', ']':
 			stackLength := len(stack)
 			if stackLength == 0 || v != brackets[stack[stackLength-1]] {
 				return false
