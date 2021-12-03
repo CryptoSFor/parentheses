@@ -43,11 +43,11 @@ func ParenthesesGeneration(n int) (string, error) {
 	}
 
 	p := "[]{}()"
-	g := ""
+	g := make([]byte, n)
 
 	for i := 0; i < n; i++ {
-		g += string(p[rand.Intn(len(p))])
+		g[i] = p[rand.Intn(len(p))]
 	}
 
-	return g, nil
+	return string(g), nil
 }
