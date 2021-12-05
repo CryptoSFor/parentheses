@@ -61,19 +61,19 @@ func TestGenerateHandler(t *testing.T) {
 		httpStatus int
 	}{
 		{
-			name:       "1",
+			name:       "len of the sequence : 1",
 			length:     1,
 			expLength:  1,
 			httpStatus: 200,
 		},
 		{
-			name:       "2",
+			name:       "len of the sequence : 0",
 			length:     0,
 			expLength:  0,
 			httpStatus: 200,
 		},
 		{
-			name:       "3",
+			name:       "len of the sequence : 1-",
 			length:     -1,
 			expLength:  0,
 			httpStatus: 400,
