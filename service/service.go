@@ -4,12 +4,13 @@ package service
 
 import (
 	"errors"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
 )
 
-var ErrNegativeLength = errors.New("negative length")
+var ErrIncorrectInput = errors.New("inccorect input")
 
 // HandleRequests implements all handlers
 func HandleRequests() {
@@ -22,7 +23,9 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 	l, err := strconv.Atoi(n)
 
 	if err != nil || l < 0 {
+		log.Println(ErrIncorrectInput)
 		w.WriteHeader(http.StatusBadRequest)
+
 		return
 	}
 
