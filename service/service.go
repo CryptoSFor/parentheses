@@ -31,7 +31,7 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 
 	s := ParenthesesGeneration(l)
 
-	_, err = w.Write([]byte(s))
+	_, err = w.Write(s)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -39,7 +39,7 @@ func GenerateHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // ParenthesesGeneration generates a random sequence of parentheses of n = length
-func ParenthesesGeneration(n int) string {
+func ParenthesesGeneration(n int) []byte {
 	p := "[]{}()"
 	g := make([]byte, n)
 
@@ -47,5 +47,5 @@ func ParenthesesGeneration(n int) string {
 		g[i] = p[rand.Intn(len(p))]
 	}
 
-	return string(g)
+	return g
 }
