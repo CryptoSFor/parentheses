@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-var ErrIncorrectInput = errors.New("inccorect input")
+var ErrIncorrectInput = errors.New("incorrect input")
 
 // HandleRequests implements all handlers
 func HandleRequests() {
