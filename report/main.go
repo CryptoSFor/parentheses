@@ -13,11 +13,10 @@ import (
 const url = "http://localhost:8181/generate?n="
 
 func main() {
-	var c int
-
 	N := 1000
 
 	for i := 2; i <= 8; i *= 2 {
+		var counter int
 		for j := 0; j < N; j++ {
 			s, err := GetParentheses(url + strconv.Itoa(i))
 			if err != nil {
@@ -26,14 +25,12 @@ func main() {
 			}
 
 			if parentheses.BalancedString(s) {
-				c++
+				counter++
 			}
 		}
 
-		p := float64(c) * 100 / float64(N)
+		p := float64(counter) * 100 / float64(N)
 		fmt.Printf("n = %d, %.1f%%\n", i, p)
-
-		c = 0
 	}
 }
 
